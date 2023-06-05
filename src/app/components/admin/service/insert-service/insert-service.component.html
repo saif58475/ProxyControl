@@ -1,0 +1,80 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" style="padding-bottom: 5px !important">
+                    <div >
+                        <h5 class="pb-2">Insert Service</h5>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <form class="needs-validation" autocomplete="off" 
+                    [formGroup] = "serviceForm"
+                    (ngSubmit)="onSubmit()" 
+                    novalidate>
+                        <div class="form-row">
+                            <!-- name  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> name</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="name"
+                                [tooltip]="fc.name.errors?.required ? 'this field is required' : null"
+                                [class.is-valid]="fc.name.valid && (fc.name.touched)"
+                                [class.is-invalid]="fc.name.invalid && (fc.name.touched)"
+                                     required
+                                     placeholder="name"
+                                    containerClass=""/>
+                            </div>
+                            
+                            <!-- price  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> price</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="price"
+                                [tooltip]="fc.price.errors?.required ? 'this field is required' : null"
+                                [class.is-valid]="fc.price.valid && (fc.price.touched)"
+                                [class.is-invalid]="fc.price.invalid && (fc.price.touched)"
+                                     required
+                                     placeholder="price"
+                                    containerClass=""/>
+                            </div>
+                            <!-- details  -->
+                            <div class="col-6 mb-3">
+                                <label for="validation01"><span class="validation-required">*</span> details</label>
+                                <input class="form-control" id="validation01" type="text" formControlName="details"
+                                [tooltip]="fc.details.errors?.required ? 'this field is required' : null"
+                                [class.is-valid]="fc.details.valid && (fc.details.touched)"
+                                [class.is-invalid]="fc.details.invalid && (fc.details.touched)"
+                                     required
+                                     placeholder="details"
+                                    containerClass=""/>
+                            </div>
+                            <!-- to insert image  -->
+                          <div class="col-6 my-3">
+                            <img src="{{ imageLogo }}" class="image-style w-50 p-2" />
+                            <input type="file" formControlName="image" accept="image/*" #file id="getLogo"
+                                style="display: none" (change)="getLogoUrl($event)" />
+
+                            <button type="button" onclick="document.getElementById('getLogo').click()"
+                                class="btn btn-primary w-50 d-block">
+                                ارفق صورة
+                            </button>
+                        </div> 
+                        </div>
+                        <ng-template #elseBlock>
+                            <button [disabled]="button" class="btn btn-primary pull-right" type="submit">
+                               Save
+                            </button>
+                            </ng-template>
+                        <div *ngIf="update; else elseBlock">
+                            <button class="btn btn-primary pull-right" type="submit">
+                                Update
+                            </button>
+                       </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
